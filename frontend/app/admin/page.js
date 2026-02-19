@@ -99,89 +99,100 @@ function AdminContent() {
   }
 
   return (
-    <div className="py-12 bg-gradient-to-b from-gray-900 via-black to-gray-900 min-h-screen">
-      <div className="container mx-auto px-4">
+    <div className="py-12 min-h-screen relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-gray-950 via-gray-900 to-black">
+        <div className="absolute inset-0 tech-grid opacity-5"></div>
+        <div className="absolute top-20 left-10 w-[500px] h-[500px] bg-emerald-500/10 rounded-full filter blur-[100px]"></div>
+        <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-green-500/10 rounded-full filter blur-[100px]"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">Admin Dashboard</h1>
-          <p className="text-gray-400">Welcome back! Here's what's happening with your platform.</p>
+          <h1 className="text-4xl md:text-5xl font-bold gradient-text-emerald mb-2">Admin Dashboard</h1>
+          <p className="text-gray-300 text-lg">Welcome back! Here's what's happening with your platform.</p>
         </div>
 
         {/* Stats Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="glass-dark rounded-xl p-6 border border-emerald-500/20 hover:border-emerald-500/40 transition-all">
+          <div className="card-3d p-6 group">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">📚</span>
+              <div className="w-14 h-14 bg-gradient-to-br from-emerald-400 to-green-500 rounded-xl flex items-center justify-center shadow-emerald-glow">
+                <span className="text-3xl">📚</span>
               </div>
-              <span className="text-xs text-gray-400">Total</span>
+              <span className="text-xs text-gray-400 font-medium">Total</span>
             </div>
-            <h3 className="text-3xl font-bold text-white mb-1">{stats.courses}</h3>
-            <p className="text-sm text-gray-400">Courses</p>
+            <h3 className="text-4xl font-bold text-white mb-2">{stats.courses}</h3>
+            <p className="text-sm text-gray-300 font-medium">Courses</p>
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity rounded-b-2xl"></div>
           </div>
 
-          <div className="glass-dark rounded-xl p-6 border border-emerald-500/20 hover:border-emerald-500/40 transition-all">
+          <div className="card-3d p-6 group">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">🎓</span>
+              <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
+                <span className="text-3xl">🎓</span>
               </div>
-              <span className="text-xs text-gray-400">Partners</span>
+              <span className="text-xs text-gray-400 font-medium">Partners</span>
             </div>
-            <h3 className="text-3xl font-bold text-white mb-1">{stats.universities}</h3>
-            <p className="text-sm text-gray-400">Universities</p>
+            <h3 className="text-4xl font-bold text-white mb-2">{stats.universities}</h3>
+            <p className="text-sm text-gray-300 font-medium">Universities</p>
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity rounded-b-2xl"></div>
           </div>
 
-          <div className="glass-dark rounded-xl p-6 border border-emerald-500/20 hover:border-emerald-500/40 transition-all">
+          <div className="card-3d p-6 group">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">📝</span>
+              <div className="w-14 h-14 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/30">
+                <span className="text-3xl">📝</span>
               </div>
-              <span className="text-xs text-gray-400">Active</span>
+              <span className="text-xs text-gray-400 font-medium">Active</span>
             </div>
-            <h3 className="text-3xl font-bold text-white mb-1">{stats.enrollments}</h3>
-            <p className="text-sm text-gray-400">Enrollments</p>
+            <h3 className="text-4xl font-bold text-white mb-2">{stats.enrollments}</h3>
+            <p className="text-sm text-gray-300 font-medium">Enrollments</p>
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity rounded-b-2xl"></div>
           </div>
 
-          <div className="glass-dark rounded-xl p-6 border border-emerald-500/20 hover:border-emerald-500/40 transition-all">
+          <div className="card-3d p-6 group">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">📧</span>
+              <div className="w-14 h-14 bg-gradient-to-br from-purple-400 to-purple-500 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/30">
+                <span className="text-3xl">📧</span>
               </div>
-              <span className="text-xs text-gray-400">Active</span>
+              <span className="text-xs text-gray-400 font-medium">Active</span>
             </div>
-            <h3 className="text-3xl font-bold text-white mb-1">{stats.subscribers}</h3>
-            <p className="text-sm text-gray-400">Subscribers</p>
+            <h3 className="text-4xl font-bold text-white mb-2">{stats.subscribers}</h3>
+            <p className="text-sm text-gray-300 font-medium">Subscribers</p>
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity rounded-b-2xl"></div>
           </div>
         </div>
 
         {/* Secondary Stats */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <div className="glass-dark rounded-xl p-6 border border-emerald-500/20">
+          <div className="glass-card-modern p-6 border border-emerald-500/20 hover:border-emerald-500/40 transition-all">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm mb-1">Services</p>
-                <p className="text-2xl font-bold text-white">{stats.services}</p>
+                <p className="text-gray-400 text-sm mb-2 font-medium">Services</p>
+                <p className="text-3xl font-bold text-white">{stats.services}</p>
               </div>
-              <div className="text-3xl">⚙️</div>
+              <div className="text-4xl">⚙️</div>
             </div>
           </div>
 
-          <div className="glass-dark rounded-xl p-6 border border-emerald-500/20">
+          <div className="glass-card-modern p-6 border border-emerald-500/20 hover:border-emerald-500/40 transition-all">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm mb-1">Inquiries</p>
-                <p className="text-2xl font-bold text-white">{stats.inquiries}</p>
+                <p className="text-gray-400 text-sm mb-2 font-medium">Inquiries</p>
+                <p className="text-3xl font-bold text-white">{stats.inquiries}</p>
               </div>
-              <div className="text-3xl">💬</div>
+              <div className="text-4xl">💬</div>
             </div>
           </div>
 
-          <div className="glass-dark rounded-xl p-6 border border-emerald-500/20">
+          <div className="glass-card-modern p-6 border border-emerald-500/20 hover:border-emerald-500/40 transition-all">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm mb-1">Partnerships</p>
-                <p className="text-2xl font-bold text-white">{stats.partnerships}</p>
+                <p className="text-gray-400 text-sm mb-2 font-medium">Partnerships</p>
+                <p className="text-3xl font-bold text-white">{stats.partnerships}</p>
               </div>
-              <div className="text-3xl">🤝</div>
+              <div className="text-4xl">🤝</div>
             </div>
           </div>
         </div>
@@ -191,9 +202,9 @@ function AdminContent() {
           <div className="lg:col-span-2">
             <h2 className="text-2xl font-bold text-white mb-6">Quick Actions</h2>
             <div className="grid md:grid-cols-2 gap-4">
-              <Link href="/admin/courses" className="glass-dark rounded-xl p-6 border border-emerald-500/20 hover:border-emerald-500/40 transition-all group">
+              <Link href="/admin/courses" className="card-3d p-6 group hover:scale-105 transition-transform">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-green-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-emerald-glow">
                     <span className="text-2xl">📚</span>
                   </div>
                   <div>

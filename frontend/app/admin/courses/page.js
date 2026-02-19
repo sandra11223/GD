@@ -10,18 +10,54 @@ function CoursesContent() {
   const [courses, setCourses] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterLevel, setFilterLevel] = useState('all');
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     duration: '',
     level: 'Beginner',
     category: '',
-    price: 0
+    price: 0,
+    image: '',
+    instructor: ''
   });
 
   useEffect(() => {
     fetchCourses();
   }, []);
+
+  const exportToCSV = () => {
+    const headers = ['Title', 'Category', 'Level', 'Duration', 'Price', 'Created At'];
+    const rows = filteredCourses.map(course => [
+      course.title,
+      course.category,
+      course.level,
+      course.duration,
+      course.price,
+      new Date(course.createdAt).toLocaleDateString()
+    ]);
+    
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+    
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `courses_${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
+  const filteredCourses = courses.filter(course => {
+    const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         course.category.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesLevel = filterLevel === 'all' || course.level === filterLevel;
+    return matchesSearch && matchesLevel;
+  });
 
   const fetchCourses = async () => {
     try {
@@ -56,7 +92,9 @@ function CoursesContent() {
       duration: course.duration,
       level: course.level,
       category: course.category,
-      price: course.price
+      price: course.price,
+      image: course.image || '',
+      instructor: course.instructor || ''
     });
     setEditingId(course._id);
     setShowForm(true);
@@ -81,27 +119,70 @@ function CoursesContent() {
       duration: '',
       level: 'Beginner',
       category: '',
-      price: 0
+      price: 0,
+      image: '',
+      instructor: ''
     });
     setEditingId(null);
     setShowForm(false);
   };
 
   return (
-    <div className="py-12 bg-dark-900 min-h-screen">
+    <div className="py-12 bg-gradient-to-b from-gray-900 via-black to-gray-900 min-h-screen">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-white">Manage Courses</h1>
-          <button
-            onClick={() => setShowForm(!showForm)}
-            className="btn-primary"
-          >
-            {showForm ? 'Cancel' : 'Add New Course'}
-          </button>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-white mb-2">Manage Courses</h1>
+            <p className="text-gray-400">Total: {courses.length} courses</p>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={exportToCSV}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all flex items-center gap-2"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Export CSV
+            </button>
+            <button
+              onClick={() => setShowForm(!showForm)}
+              className="btn-primary"
+            >
+              {showForm ? 'Cancel' : '+ Add Course'}
+            </button>
+          </div>
+        </div>
+
+        {/* Search and Filter */}
+        <div className="glass-dark rounded-xl p-4 border border-emerald-500/20 mb-6">
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <input
+                type="text"
+                placeholder="Search courses..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="input-field w-full"
+              />
+            </div>
+            <div>
+              <select
+                value={filterLevel}
+                onChange={(e) => setFilterLevel(e.target.value)}
+                className="input-field w-full"
+              >
+                <option value="all">All Levels</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
+            </div>
+          </div>
         </div>
 
         {showForm && (
-          <div className="card mb-8">
+          <div className="glass-dark rounded-xl p-6 border border-emerald-500/20 mb-8">
             <h2 className="text-xl font-semibold mb-4 text-white">
               {editingId ? 'Edit Course' : 'Add New Course'}
             </h2>
@@ -179,42 +260,70 @@ function CoursesContent() {
           </div>
         )}
 
-        <div className="card overflow-hidden">
-          <table className="w-full">
-            <thead className="bg-dark-700">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Title</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Level</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Duration</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-dark-700">
-              {courses.map((course) => (
-                <tr key={course._id} className="text-gray-300">
-                  <td className="px-6 py-4">{course.title}</td>
-                  <td className="px-6 py-4">{course.category}</td>
-                  <td className="px-6 py-4">{course.level}</td>
-                  <td className="px-6 py-4">{course.duration}</td>
-                  <td className="px-6 py-4">
-                    <button
-                      onClick={() => handleEdit(course)}
-                      className="text-blue-400 hover:text-blue-300 mr-4"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(course._id)}
-                      className="text-red-400 hover:text-red-300"
-                    >
-                      Delete
-                    </button>
-                  </td>
+        <div className="glass-dark rounded-xl overflow-hidden border border-emerald-500/20">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-800/50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Title</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Category</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Level</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Duration</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Price</th>
+                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase tracking-wider">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-gray-800">
+                {filteredCourses.length === 0 ? (
+                  <tr>
+                    <td colSpan="6" className="px-6 py-8 text-center text-gray-400">
+                      No courses found
+                    </td>
+                  </tr>
+                ) : (
+                  filteredCourses.map((course) => (
+                    <tr key={course._id} className="text-gray-300 hover:bg-gray-800/30 transition-colors">
+                      <td className="px-6 py-4 font-medium text-white">{course.title}</td>
+                      <td className="px-6 py-4">
+                        <span className="px-2 py-1 bg-emerald-500/10 text-emerald-400 rounded text-xs">
+                          {course.category}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className={`px-2 py-1 rounded text-xs ${
+                          course.level === 'Beginner' ? 'bg-green-500/10 text-green-400' :
+                          course.level === 'Intermediate' ? 'bg-yellow-500/10 text-yellow-400' :
+                          'bg-red-500/10 text-red-400'
+                        }`}>
+                          {course.level}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">{course.duration}</td>
+                      <td className="px-6 py-4">${course.price}</td>
+                      <td className="px-6 py-4 text-right">
+                        <button
+                          onClick={() => handleEdit(course)}
+                          className="text-blue-400 hover:text-blue-300 mr-3 transition-colors"
+                        >
+                          <svg className="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={() => handleDelete(course._id)}
+                          className="text-red-400 hover:text-red-300 transition-colors"
+                        >
+                          <svg className="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

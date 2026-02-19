@@ -1,0 +1,489 @@
+/**
+ * Premium Animation System
+ * Smooth, professional animations for production-ready websites
+ * Inspired by Dribbble & Awwwards
+ */
+
+/* ============================================
+   ANIMATION BASE SETUP
+   ============================================ */
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   SCROLL REVEAL ANIMATIONS
+   ============================================ */
+
+/* Base state for animated elements */
+[data-animate] {
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Fade In */
+[data-animate="fade"].animate-in {
+  opacity: 1;
+}
+
+/* Fade Up */
+[data-animate="fade-up"] {
+  transform: translateY(30px);
+}
+[data-animate="fade-up"].animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade Down */
+[data-animate="fade-down"] {
+  transform: translateY(-30px);
+}
+[data-animate="fade-down"].animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade Left */
+[data-animate="fade-left"] {
+  transform: translateX(30px);
+}
+[data-animate="fade-left"].animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade Right */
+[data-animate="fade-right"] {
+  transform: translateX(-30px);
+}
+[data-animate="fade-right"].animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale In */
+[data-animate="scale"] {
+  transform: scale(0.95);
+}
+[data-animate="scale"].animate-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Zoom In */
+[data-animate="zoom"] {
+  transform: scale(0.9);
+}
+[data-animate="zoom"].animate-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ============================================
+   HOVER MICRO-INTERACTIONS
+   ============================================ */
+
+/* Premium Button Hover */
+.btn-premium {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-premium:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+}
+
+.btn-premium:hover::before {
+  left: 100%;
+}
+
+.btn-premium:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Card Lift Effect */
+.card-lift {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Link Underline Animation */
+.link-animated {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-animated::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.link-animated:hover::after {
+  width: 100%;
+}
+
+/* Image Zoom on Hover */
+.image-zoom {
+  overflow: hidden;
+}
+
+.image-zoom img {
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.image-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   NAVBAR ANIMATIONS
+   ============================================ */
+
+nav {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+nav.scroll-down {
+  transform: translateY(-100%);
+}
+
+nav.scroll-up {
+  transform: translateY(0);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   LOADING ANIMATIONS
+   ============================================ */
+
+/* Skeleton Loading */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(16, 185, 129, 0.1);
+  border-top-color: #10b981;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   PREMIUM KEYFRAME ANIMATIONS
+   ============================================ */
+
+/* Smooth Fade In */
+@keyframes smoothFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Elastic Scale */
+@keyframes elasticScale {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Slide Fade */
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Glow Pulse */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(16, 185, 129, 0.6);
+  }
+}
+
+/* Shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Float */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Rotate Gentle */
+@keyframes rotateGentle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   FLOATING SHAPES
+   ============================================ */
+
+.floating-shape {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.1), transparent);
+  pointer-events: none;
+  animation: floatShape 20s ease-in-out infinite;
+}
+
+@keyframes floatShape {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translate(50px, -50px) scale(1.1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-30px, -100px) scale(0.9);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translate(-80px, -50px) scale(1.05);
+    opacity: 0.6;
+  }
+}
+
+/* ============================================
+   CURSOR EFFECTS
+   ============================================ */
+
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #10b981;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1),
+              opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 0.6;
+}
+
+.custom-cursor.cursor-hover {
+  transform: scale(1.5);
+  opacity: 1;
+}
+
+/* ============================================
+   SECTION DIVIDERS
+   ============================================ */
+
+.section-divider {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(16, 185, 129, 0.3),
+    transparent
+  );
+  overflow: hidden;
+}
+
+.section-divider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(16, 185, 129, 0.8),
+    transparent
+  );
+  animation: dividerSlide 3s ease-in-out infinite;
+}
+
+@keyframes dividerSlide {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.animate-smooth {
+  animation: smoothFadeIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animate-elastic {
+  animation: elasticScale 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-slide {
+  animation: slideFade 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animate-glow {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Delay utilities */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* ============================================
+   RESPONSIVE ANIMATIONS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Reduce animation intensity on mobile */
+  [data-animate] {
+    transition-duration: 0.4s;
+  }
+  
+  [data-animate="fade-up"],
+  [data-animate="fade-down"] {
+    transform: translateY(20px);
+  }
+  
+  [data-animate="fade-left"],
+  [data-animate="fade-right"] {
+    transform: translateX(20px);
+  }
+  
+  .card-lift:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+/* Use GPU acceleration for transforms */
+[data-animate],
+.btn-premium,
+.card-lift,
+.image-zoom img {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}

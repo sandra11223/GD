@@ -10,6 +10,8 @@ function UniversitiesContent() {
   const [universities, setUniversities] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterCountry, setFilterCountry] = useState('all');
   const [formData, setFormData] = useState({
     name: '',
     country: '',
@@ -17,12 +19,50 @@ function UniversitiesContent() {
     description: '',
     ranking: '',
     website: '',
-    tuitionFee: ''
+    tuitionFee: '',
+    logo: '',
+    programs: '',
+    students: ''
   });
 
   useEffect(() => {
     fetchUniversities();
   }, []);
+
+  const exportToCSV = () => {
+    const headers = ['Name', 'Country', 'City', 'Ranking', 'Website', 'Tuition Fee', 'Created At'];
+    const rows = filteredUniversities.map(uni => [
+      uni.name,
+      uni.country,
+      uni.city,
+      uni.ranking || 'N/A',
+      uni.website || 'N/A',
+      uni.tuitionFee || 'N/A',
+      new Date(uni.createdAt).toLocaleDateString()
+    ]);
+    
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+    
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `universities_${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
+  const filteredUniversities = universities.filter(uni => {
+    const matchesSearch = uni.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         uni.city.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCountry = filterCountry === 'all' || uni.country === filterCountry;
+    return matchesSearch && matchesCountry;
+  });
+
+  const countries = [...new Set(universities.map(uni => uni.country))].sort();
 
   const fetchUniversities = async () => {
     try {
@@ -58,7 +98,10 @@ function UniversitiesContent() {
       description: university.description,
       ranking: university.ranking || '',
       website: university.website || '',
-      tuitionFee: university.tuitionFee || ''
+      tuitionFee: university.tuitionFee || '',
+      logo: university.logo || '',
+      programs: university.programs || '',
+      students: university.students || ''
     });
     setEditingId(university._id);
     setShowForm(true);
@@ -84,27 +127,71 @@ function UniversitiesContent() {
       description: '',
       ranking: '',
       website: '',
-      tuitionFee: ''
+      tuitionFee: '',
+      logo: '',
+      programs: '',
+      students: ''
     });
     setEditingId(null);
     setShowForm(false);
   };
 
   return (
-    <div className="py-12 bg-dark-900 min-h-screen">
+    <div className="py-12 bg-gradient-to-b from-gray-900 via-black to-gray-900 min-h-screen">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-white">Manage Universities</h1>
-          <button
-            onClick={() => setShowForm(!showForm)}
-            className="btn-primary"
-          >
-            {showForm ? 'Cancel' : 'Add New University'}
-          </button>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-white mb-2">Manage Universities</h1>
+            <p className="text-gray-400">Total: {universities.length} universities</p>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={exportToCSV}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all flex items-center gap-2"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Export CSV
+            </button>
+            <button
+              onClick={() => setShowForm(!showForm)}
+              className="btn-primary"
+            >
+              {showForm ? 'Cancel' : '+ Add University'}
+            </button>
+          </div>
+        </div>
+
+        {/* Search and Filter */}
+        <div className="glass-dark rounded-xl p-4 border border-emerald-500/20 mb-6">
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <input
+                type="text"
+                placeholder="Search universities..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="input-field w-full"
+              />
+            </div>
+            <div>
+              <select
+                value={filterCountry}
+                onChange={(e) => setFilterCountry(e.target.value)}
+                className="input-field w-full"
+              >
+                <option value="all">All Countries</option>
+                {countries.map(country => (
+                  <option key={country} value={country}>{country}</option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
 
         {showForm && (
-          <div className="card mb-8">
+          <div className="glass-dark rounded-xl p-6 border border-emerald-500/20 mb-8">
             <h2 className="text-xl font-semibold mb-4 text-white">
               {editingId ? 'Edit University' : 'Add New University'}
             </h2>
@@ -188,35 +275,44 @@ function UniversitiesContent() {
           </div>
         )}
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {universities.map((university) => (
-            <div key={university._id} className="card">
-              <h3 className="text-xl font-semibold mb-2 text-white">{university.name}</h3>
-              <p className="text-sm text-gray-400 mb-2">
-                {university.city}, {university.country}
-              </p>
-              {university.ranking && (
-                <span className="inline-block bg-yellow-500/20 text-yellow-400 text-xs px-2 py-1 rounded-full mb-2">
-                  Ranking: #{university.ranking}
-                </span>
-              )}
-              <p className="text-gray-400 mb-4 line-clamp-2">{university.description}</p>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => handleEdit(university)}
-                  className="text-blue-400 hover:text-blue-300"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(university._id)}
-                  className="text-red-400 hover:text-red-300"
-                >
-                  Delete
-                </button>
-              </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredUniversities.length === 0 ? (
+            <div className="col-span-full glass-dark rounded-xl p-12 border border-emerald-500/20 text-center">
+              <p className="text-gray-400">No universities found</p>
             </div>
-          ))}
+          ) : (
+            filteredUniversities.map((university) => (
+              <div key={university._id} className="glass-dark rounded-xl p-6 border border-emerald-500/20 hover:border-emerald-500/40 transition-all">
+                <h3 className="text-xl font-semibold mb-2 text-white">{university.name}</h3>
+                <p className="text-sm text-gray-400 mb-3">
+                  📍 {university.city}, {university.country}
+                </p>
+                {university.ranking && (
+                  <span className="inline-block bg-yellow-500/20 text-yellow-400 text-xs px-3 py-1 rounded-full mb-3 border border-yellow-500/30">
+                    Ranking: #{university.ranking}
+                  </span>
+                )}
+                <p className="text-gray-400 mb-4 line-clamp-2 text-sm">{university.description}</p>
+                {university.tuitionFee && (
+                  <p className="text-emerald-400 text-sm mb-4">💰 {university.tuitionFee}</p>
+                )}
+                <div className="flex gap-2 pt-4 border-t border-gray-800">
+                  <button
+                    onClick={() => handleEdit(university)}
+                    className="flex-1 px-3 py-2 bg-blue-500/20 text-blue-400 rounded-lg hover:bg-blue-500/30 transition-all text-sm border border-blue-500/30"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(university._id)}
+                    className="flex-1 px-3 py-2 bg-red-500/20 text-red-400 rounded-lg hover:bg-red-500/30 transition-all text-sm border border-red-500/30"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
