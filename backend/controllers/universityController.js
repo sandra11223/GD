@@ -27,7 +27,12 @@ const createUniversity = async (req, res) => {
     const university = await University.create(req.body);
     res.status(201).json(university);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    if (error.name === 'ValidationError') {
+      const errors = Object.values(error.errors).map(err => err.message);
+      res.status(400).json({ message: 'Validation failed', errors });
+    } else {
+      res.status(400).json({ message: error.message });
+    }
   }
 };
 

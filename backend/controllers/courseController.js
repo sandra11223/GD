@@ -27,7 +27,12 @@ const createCourse = async (req, res) => {
     const course = await Course.create(req.body);
     res.status(201).json(course);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    if (error.name === 'ValidationError') {
+      const errors = Object.values(error.errors).map(err => err.message);
+      res.status(400).json({ message: 'Validation failed', errors });
+    } else {
+      res.status(400).json({ message: error.message });
+    }
   }
 };
 
