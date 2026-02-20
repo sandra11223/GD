@@ -4,36 +4,8 @@ import { useState, useEffect } from 'react';
 import api from '../../services/api';
 import Link from 'next/link';
 
-// Demo courses data
-const demoCourses = [
-  {
-    _id: 'demo-1',
-    title: 'Digital Marketing Fundamentals',
-    description: 'Master the essentials of digital marketing including SEO, social media, content marketing, and analytics.',
-    category: 'Marketing',
-    level: 'Beginner',
-    duration: '8 weeks',
-    price: 299
-  },
-  {
-    _id: 'demo-2',
-    title: 'Data Science & Analytics',
-    description: 'Learn data analysis, visualization, and machine learning techniques using Python and industry tools.',
-    category: 'Technology',
-    level: 'Intermediate',
-    duration: '12 weeks',
-    price: 499
-  },
-  {
-    _id: 'demo-3',
-    title: 'Project Management Professional',
-    description: 'Comprehensive PMP certification preparation with real-world project management scenarios.',
-    category: 'Management',
-    level: 'Advanced',
-    duration: '10 weeks',
-    price: 399
-  }
-];
+// Demo courses data - empty array, will use database data only
+const demoCourses = [];
 
 export default function Courses() {
   const [courses, setCourses] = useState([]);
@@ -66,13 +38,13 @@ export default function Courses() {
       console.log('Fetching courses from API...');
       const { data } = await api.get('/courses');
       console.log('Courses received:', data);
-      // Use only demo courses (don't merge with database)
-      setCourses(demoCourses);
+      // Use only database courses
+      setCourses(data);
     } catch (error) {
       console.error('Error fetching courses:', error);
       console.error('Error details:', error.response?.data || error.message);
-      // If API fails, still show demo courses
-      setCourses(demoCourses);
+      // If API fails, show empty array
+      setCourses([]);
     } finally {
       setLoading(false);
     }

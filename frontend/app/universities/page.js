@@ -4,42 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import api from '../../services/api';
 
-// Demo universities data
-const demoUniversities = [
-  {
-    _id: 'demo-1',
-    name: 'Stanford University',
-    country: 'United States',
-    description: 'World-renowned research university known for innovation, entrepreneurship, and academic excellence.',
-    ranking: 'Top 5 Global',
-    programs: '200+ Programs',
-    students: '17,000+',
-    image: 'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=600&q=80',
-    website: 'https://www.stanford.edu'
-  },
-  {
-    _id: 'demo-2',
-    name: 'University of Oxford',
-    country: 'United Kingdom',
-    description: 'Historic institution offering world-class education across humanities, sciences, and professional studies.',
-    ranking: 'Top 3 Global',
-    programs: '350+ Programs',
-    students: '24,000+',
-    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80',
-    website: 'https://www.ox.ac.uk'
-  },
-  {
-    _id: 'demo-3',
-    name: 'National University of Singapore',
-    country: 'Singapore',
-    description: 'Leading global university in Asia with strong research focus and industry partnerships.',
-    ranking: 'Top 15 Global',
-    programs: '150+ Programs',
-    students: '40,000+',
-    image: 'https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=80',
-    website: 'https://www.nus.edu.sg'
-  }
-];
+// Demo universities data - empty array, will use database data only
+const demoUniversities = [];
 
 export default function Universities() {
   const [universities, setUniversities] = useState([]);
@@ -54,13 +20,13 @@ export default function Universities() {
       console.log('Fetching universities from API...');
       const { data } = await api.get('/universities');
       console.log('Universities received:', data);
-      // Use only demo universities (don't merge with database)
-      setUniversities(demoUniversities);
+      // Use only database universities
+      setUniversities(data);
     } catch (error) {
       console.error('Error fetching universities:', error);
       console.error('Error details:', error.response?.data || error.message);
-      // If API fails, still show demo universities
-      setUniversities(demoUniversities);
+      // If API fails, show empty array
+      setUniversities([]);
     } finally {
       setLoading(false);
     }
