@@ -31,7 +31,7 @@ export default function Partnerships() {
   ];
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black pt-16">
       {/* Hero Section with Education Image */}
       <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-black">
         <div className="absolute inset-0 z-0">
