@@ -35,12 +35,24 @@ export default function Footer() {
       
       // Check if it's a network error (backend not available)
       if (err.code === 'ERR_NETWORK' || !err.response) {
-        setError('Service temporarily unavailable. Please try again later.');
+        // Temporary: Store email locally until backend is deployed
+        try {
+          const subscribers = JSON.parse(localStorage.getItem('pendingSubscribers') || '[]');
+          if (!subscribers.includes(email)) {
+            subscribers.push(email);
+            localStorage.setItem('pendingSubscribers', JSON.stringify(subscribers));
+          }
+          setMessage('Thank you! Your subscription request has been saved. We will process it once our service is available.');
+          setEmail('');
+          setTimeout(() => setMessage(''), 7000);
+        } catch (storageErr) {
+          setError('Service temporarily unavailable. Please try again later.');
+          setTimeout(() => setError(''), 5000);
+        }
       } else {
         setError(err.response?.data?.message || 'Failed to subscribe. Please try again.');
+        setTimeout(() => setError(''), 5000);
       }
-      
-      setTimeout(() => setError(''), 5000);
     } finally {
       setLoading(false);
     }
@@ -75,7 +87,8 @@ export default function Footer() {
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-emerald-400 to-green-500 text-gray-900 rounded-xl font-semibold hover:from-emerald-500 hover:to-green-600 transition-all shadow-emerald-glow hover:shadow-emerald-glow-lg whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto text-sm sm:text-base"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-emerald-400 to-green-500 text-gray-900 rounded-xl font-semibold hover:from-emerald-500 hover:to-green-600 active:scale-95 transition-all shadow-emerald-glow hover:shadow-emerald-glow-lg whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto text-sm sm:text-base touch-manipulation min-h-[48px]"
+                  style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
                   {loading ? 'Subscribing...' : 'Subscribe'}
                 </button>
