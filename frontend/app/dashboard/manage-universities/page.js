@@ -37,18 +37,28 @@ export default function ManageUniversities() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log('Submitting university data:', formData);
       if (editingUniversity) {
-        await api.put(`/universities/${editingUniversity._id}`, formData);
+        const response = await api.put(`/universities/${editingUniversity._id}`, formData);
+        console.log('Update response:', response.data);
         alert('University updated successfully!');
       } else {
-        await api.post('/universities', formData);
+        const response = await api.post('/universities', formData);
+        console.log('Create response:', response.data);
         alert('University created successfully!');
       }
       resetForm();
       fetchUniversities();
     } catch (error) {
       console.error('Error saving university:', error);
-      alert('Error saving university. Please try again.');
+      console.error('Error response:', error.response?.data);
+      const errorMessage = error.response?.data?.message || error.message;
+      const errors = error.response?.data?.errors;
+      if (errors) {
+        alert(`Validation failed:\n${errors.join('\n')}`);
+      } else {
+        alert(`Error: ${errorMessage}`);
+      }
     }
   };
 

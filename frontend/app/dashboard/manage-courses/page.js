@@ -37,18 +37,28 @@ export default function ManageCourses() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log('Submitting course data:', formData);
       if (editingCourse) {
-        await api.put(`/courses/${editingCourse._id}`, formData);
+        const response = await api.put(`/courses/${editingCourse._id}`, formData);
+        console.log('Update response:', response.data);
         alert('Course updated successfully!');
       } else {
-        await api.post('/courses', formData);
+        const response = await api.post('/courses', formData);
+        console.log('Create response:', response.data);
         alert('Course created successfully!');
       }
       resetForm();
       fetchCourses();
     } catch (error) {
       console.error('Error saving course:', error);
-      alert('Error saving course. Please try again.');
+      console.error('Error response:', error.response?.data);
+      const errorMessage = error.response?.data?.message || error.message;
+      const errors = error.response?.data?.errors;
+      if (errors) {
+        alert(`Validation failed:\n${errors.join('\n')}`);
+      } else {
+        alert(`Error: ${errorMessage}`);
+      }
     }
   };
 
