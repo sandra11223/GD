@@ -2152,6 +2152,16 @@ nav.fixed-navbar {
   left: 0 !important;
   right: 0 !important;
   z-index: 9999 !important;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Navbar scroll behavior - keep it visible */
+nav.fixed-navbar.scroll-down {
+  transform: translateY(0) !important;
+}
+
+nav.fixed-navbar.scroll-up {
+  transform: translateY(0) !important;
 }
 
 /* Mobile-optimized spacing utilities */

@@ -45,10 +45,10 @@ export default function RootLayout({ children }) {
     // Initialize scroll reveal animations
     const observer = initScrollReveal();
     
-    // Initialize navbar scroll behavior
-    if (!isDashboardOrAdmin) {
-      initNavbarScroll();
-    }
+    // Disable navbar scroll behavior - keep navbar always visible
+    // if (!isDashboardOrAdmin) {
+    //   initNavbarScroll();
+    // }
 
     // Page transition effect
     document.body.style.opacity = '0';
