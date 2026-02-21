@@ -100,9 +100,14 @@ export default function About() {
       <section className="lofi-section puzzle-bg-dark">
         <div className="lofi-container">
           <div className="text-center mb-12">
-            <span className="puzzle-label mx-auto mb-6">WHAT WE DO</span>
-            <h2 className="puzzle-heading">
-              <span className="puzzle-gradient-text">Comprehensive B2B Solutions</span>
+            <span className="inline-block px-4 py-2 bg-gold-400/10 border border-gold-400/30 rounded-full text-xs font-bold text-gold-400 tracking-wider uppercase mx-auto mb-6">WHAT WE DO</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span style={{
+                background: 'linear-gradient(135deg, #F5E5B8 0%, #E6C87C 50%, #D4B566 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}>Comprehensive B2B Solutions</span>
             </h2>
           </div>
           
