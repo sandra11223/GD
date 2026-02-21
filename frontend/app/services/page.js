@@ -94,7 +94,7 @@ export default function Services() {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-gold-400 rounded-full animate-float opacity-60"></div>
           <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-gold-400 rounded-full animate-float animation-delay-1000 opacity-40"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-emerald-300 rounded-full animate-float animation-delay-2000 opacity-50"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-gold-300 rounded-full animate-float animation-delay-2000 opacity-50"></div>
           <div className="absolute top-2/3 right-1/4 w-3 h-3 bg-gold-400 rounded-full animate-float animation-delay-3000 opacity-30"></div>
         </div>
         
@@ -233,4 +233,6 @@ export default function Services() {
     </div>
   );
 }
+
+
 

@@ -62,7 +62,7 @@ Service Type: ${formData.serviceType}
         <p className="text-gray-300 text-lg">Request customized educational services for your institution</p>
       </div>
 
-      <div className="glass-dark rounded-xl border border-gold-400/20 shadow-emerald-glow p-8">
+      <div className="glass-dark rounded-xl border border-gold-400/20 shadow-gold-glow p-8">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             <div>
@@ -172,4 +172,5 @@ export default function Services() {
     </ProtectedRoute>
   );
 }
+
 

@@ -1,4 +1,4 @@
-?'use client';
+'use client';
 
 import Link from 'next/link';
 import { useState } from 'react';
@@ -95,7 +95,7 @@ export default function Home() {
                 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-smoothSlideFade" style={{animationDelay: '0.5s'}}>
-                  <Link href="/register" className="group relative px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-black font-bold rounded-xl overflow-hidden transition-all hover:shadow-2xl hover:shadow-emerald-500/50 hover:scale-105">
+                  <Link href="/register" className="group relative px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-black font-bold rounded-xl overflow-hidden transition-all hover:shadow-2xl hover:shadow-gold-500/50 hover:scale-105">
                     <div className="absolute inset-0 bg-gradient-to-r from-gold-400 to-gold-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <span className="relative z-10 flex items-center justify-center gap-2">
                       Get Started
@@ -411,4 +411,5 @@ export default function Home() {
     </>
   );
 }
+
 

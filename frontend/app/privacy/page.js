@@ -9,7 +9,7 @@ export default function PrivacyPolicy() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 gradient-text-emerald">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 gradient-text-gold">
               Privacy Policy
             </h1>
             <p className="text-gray-400 text-lg">
@@ -114,4 +114,6 @@ export default function PrivacyPolicy() {
     </div>
   );
 }
+
+
 

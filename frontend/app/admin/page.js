@@ -128,7 +128,7 @@ function AdminContent() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="card-3d p-6 group">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 bg-gradient-to-br from-gold-400 to-gold-400 rounded-xl flex items-center justify-center shadow-emerald-glow">
+              <div className="w-14 h-14 bg-gradient-to-br from-gold-400 to-gold-400 rounded-xl flex items-center justify-center shadow-gold-glow">
                 <span className="text-3xl">📚</span>
               </div>
               <span className="text-xs text-gray-400 font-medium">Total</span>
@@ -215,7 +215,7 @@ function AdminContent() {
             <div className="grid md:grid-cols-2 gap-4">
               <Link href="/admin/courses" className="card-3d p-6 group hover:scale-105 transition-transform">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-gold-400 to-gold-400 rounded-xl flex items-center justify-center flex-shrink-0 shadow-emerald-glow">
+                  <div className="w-12 h-12 bg-gradient-to-br from-gold-400 to-gold-400 rounded-xl flex items-center justify-center flex-shrink-0 shadow-gold-glow">
                     <span className="text-2xl">📚</span>
                   </div>
                   <div>
@@ -342,5 +342,6 @@ export default function AdminDashboard() {
     </ProtectedRoute>
   );
 }
+
 
 

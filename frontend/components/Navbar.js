@@ -95,7 +95,7 @@ export default function Navbar() {
                 <Link href="/login" className="px-6 py-2 text-sm font-bold bg-gradient-to-r from-gold-400 to-gold-400 text-black rounded-lg hover:shadow-lg hover:shadow-gold-400/50 transition-all hover:scale-105">
                   Login
                 </Link>
-                <Link href="/register" className="px-4 py-2 text-sm font-medium text-gold-400 hover:text-emerald-300 transition-colors">
+                <Link href="/register" className="px-4 py-2 text-sm font-medium text-gold-400 hover:text-gold-300 transition-colors">
                   Register
                 </Link>
               </>
@@ -146,7 +146,7 @@ export default function Navbar() {
                     <Link href="/login" className="block text-center px-6 py-3 text-base font-bold bg-gradient-to-r from-gold-400 to-gold-400 text-black rounded-lg mb-2 shadow-lg shadow-gold-400/30">
                       Login
                     </Link>
-                    <Link href="/register" className="block text-center px-6 py-3 text-base font-medium text-gold-400 hover:text-emerald-300 transition-colors">
+                    <Link href="/register" className="block text-center px-6 py-3 text-base font-medium text-gold-400 hover:text-gold-300 transition-colors">
                       Register
                     </Link>
                   </>
@@ -159,4 +159,5 @@ export default function Navbar() {
     </nav>
   );
 }
+
 

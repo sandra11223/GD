@@ -68,7 +68,7 @@ function DashboardContent() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg>
       ),
-      color: 'from-gold-500 to-green-500',
+      color: 'from-gold-500 to-gold-500',
       bgColor: 'bg-primary-100',
       textColor: 'text-primary-700'
     },
@@ -81,7 +81,7 @@ function DashboardContent() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
         </svg>
       ),
-      color: 'from-green-500 to-gold-500',
+      color: 'from-gold-500 to-gold-500',
       bgColor: 'bg-accent-100',
       textColor: 'text-accent-700'
     },
@@ -139,9 +139,9 @@ function DashboardContent() {
           </h1>
           <p className="text-gray-300 text-lg">Here&apos;s your personalized B2B dashboard overview</p>
         </div>
-        <div className="rounded-xl glass-card-modern border border-gold-400/30 shadow-emerald-glow p-6">
+        <div className="rounded-xl glass-card-modern border border-gold-400/30 shadow-gold-glow p-6">
           <div className="flex items-center space-x-4">
-            <div className="w-14 h-14 bg-gradient-to-br from-gold-400 to-green-500 rounded-full flex items-center justify-center text-gray-900 font-bold text-2xl shadow-emerald-glow">
+            <div className="w-14 h-14 bg-gradient-to-br from-gold-400 to-gold-500 rounded-full flex items-center justify-center text-gray-900 font-bold text-2xl shadow-gold-glow">
               {user?.name?.charAt(0).toUpperCase()}
             </div>
             <div>
@@ -157,7 +157,7 @@ function DashboardContent() {
 
       {/* Notifications Section */}
       {notifications.length > 0 && (
-        <div className="mb-8 rounded-xl glass-card-modern border border-gold-400/30 p-6 shadow-emerald-glow">
+        <div className="mb-8 rounded-xl glass-card-modern border border-gold-400/30 p-6 shadow-gold-glow">
           <div className="flex items-center space-x-2 mb-4">
             <div className="w-10 h-10 bg-gold-400/10 rounded-lg flex items-center justify-center border border-gold-400/30">
               <svg className="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -182,7 +182,7 @@ function DashboardContent() {
         {stats.map((stat, index) => (
           <div key={index} className="card-3d p-6 group">
             <div className="flex items-start justify-between mb-4">
-              <div className={`p-3 rounded-xl bg-gradient-to-br ${stat.color} shadow-emerald-glow`}>
+              <div className={`p-3 rounded-xl bg-gradient-to-br ${stat.color} shadow-gold-glow`}>
                 <div className="text-gray-900">{stat.icon}</div>
               </div>
               <div className="text-right">
@@ -199,7 +199,7 @@ function DashboardContent() {
       {/* Partnership Status & Inquiry Tracking */}
       <div className="grid md:grid-cols-2 gap-6 mb-8">
         {/* Partnership Status */}
-        <div className="rounded-xl glass-dark border border-gold-400/20 shadow-emerald-glow p-6">
+        <div className="rounded-xl glass-dark border border-gold-400/20 shadow-gold-glow p-6">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-white flex items-center gap-2">
               <svg className="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -222,7 +222,7 @@ function DashboardContent() {
                 </svg>
               </div>
               <p className="text-gray-300 font-medium mb-4">No partnerships yet</p>
-              <Link href="/dashboard/partnership" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gold-400 to-green-500 text-gray-900 rounded-xl font-semibold hover:from-gold-500 hover:to-green-600 transition-all shadow-emerald-glow hover:shadow-emerald-glow-lg">
+              <Link href="/dashboard/partnership" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gold-400 to-gold-500 text-gray-900 rounded-xl font-semibold hover:from-gold-500 hover:to-gold-600 transition-all shadow-gold-glow hover:shadow-gold-glow-lg">
                 Apply for Partnership
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -251,7 +251,7 @@ function DashboardContent() {
         </div>
 
         {/* Inquiry Tracking */}
-        <div className="rounded-xl glass-dark border border-gold-400/20 shadow-emerald-glow p-6">
+        <div className="rounded-xl glass-dark border border-gold-400/20 shadow-gold-glow p-6">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-white flex items-center gap-2">
               <svg className="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -274,7 +274,7 @@ function DashboardContent() {
                 </svg>
               </div>
               <p className="text-gray-300 font-medium mb-4">No inquiries yet</p>
-              <Link href="/dashboard/inquiry" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gold-400 to-green-500 text-gray-900 rounded-xl font-semibold hover:from-gold-500 hover:to-green-600 transition-all shadow-emerald-glow hover:shadow-emerald-glow-lg">
+              <Link href="/dashboard/inquiry" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gold-400 to-gold-500 text-gray-900 rounded-xl font-semibold hover:from-gold-500 hover:to-gold-600 transition-all shadow-gold-glow hover:shadow-gold-glow-lg">
                 Submit Inquiry
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -305,7 +305,7 @@ function DashboardContent() {
 
       {/* Newsletter Subscribers Section */}
       <div className="mb-8">
-        <div className="rounded-xl glass-dark border border-gold-400/20 shadow-emerald-glow p-6">
+        <div className="rounded-xl glass-dark border border-gold-400/20 shadow-gold-glow p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-bold text-white flex items-center">
               <svg className="w-5 h-5 mr-2 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -559,4 +559,5 @@ export default function Dashboard() {
     </ProtectedRoute>
   );
 }
+
 

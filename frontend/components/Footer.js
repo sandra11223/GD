@@ -68,7 +68,7 @@ export default function Footer() {
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-gold-400 to-gold-400 text-gray-900 rounded-xl font-semibold hover:from-gold-400 hover:to-green-600 active:scale-95 transition-all shadow-emerald-glow hover:shadow-emerald-glow-lg whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto text-sm sm:text-base touch-manipulation min-h-[48px]"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-gold-400 to-gold-400 text-gray-900 rounded-xl font-semibold hover:from-gold-400 hover:to-gold-600 active:scale-95 transition-all shadow-gold-glow hover:shadow-gold-glow-lg whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto text-sm sm:text-base touch-manipulation min-h-[48px]"
                   style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
                   {loading ? 'Subscribing...' : 'Subscribe'}
@@ -214,7 +214,7 @@ export default function Footer() {
                     href="https://facebook.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-11 h-11 rounded-full glass-dark border border-gold-400/30 flex items-center justify-center hover:border-gold-400 hover:bg-gold-400/10 transition-all group shadow-md hover:shadow-emerald-glow"
+                    className="w-11 h-11 rounded-full glass-dark border border-gold-400/30 flex items-center justify-center hover:border-gold-400 hover:bg-gold-400/10 transition-all group shadow-md hover:shadow-gold-glow"
                     aria-label="Facebook"
                   >
                     <svg className="w-5 h-5 text-gray-300 group-hover:text-gold-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -225,7 +225,7 @@ export default function Footer() {
                     href="https://twitter.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-11 h-11 rounded-full glass-dark border border-gold-400/30 flex items-center justify-center hover:border-gold-400 hover:bg-gold-400/10 transition-all group shadow-md hover:shadow-emerald-glow"
+                    className="w-11 h-11 rounded-full glass-dark border border-gold-400/30 flex items-center justify-center hover:border-gold-400 hover:bg-gold-400/10 transition-all group shadow-md hover:shadow-gold-glow"
                     aria-label="Twitter"
                   >
                     <svg className="w-5 h-5 text-gray-300 group-hover:text-gold-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -236,7 +236,7 @@ export default function Footer() {
                     href="https://linkedin.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-11 h-11 rounded-full glass-dark border border-gold-400/30 flex items-center justify-center hover:border-gold-400 hover:bg-gold-400/10 transition-all group shadow-md hover:shadow-emerald-glow"
+                    className="w-11 h-11 rounded-full glass-dark border border-gold-400/30 flex items-center justify-center hover:border-gold-400 hover:bg-gold-400/10 transition-all group shadow-md hover:shadow-gold-glow"
                     aria-label="LinkedIn"
                   >
                     <svg className="w-5 h-5 text-gray-300 group-hover:text-gold-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -247,7 +247,7 @@ export default function Footer() {
                     href="https://instagram.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-11 h-11 rounded-full glass-dark border border-gold-400/30 flex items-center justify-center hover:border-gold-400 hover:bg-gold-400/10 transition-all group shadow-md hover:shadow-emerald-glow"
+                    className="w-11 h-11 rounded-full glass-dark border border-gold-400/30 flex items-center justify-center hover:border-gold-400 hover:bg-gold-400/10 transition-all group shadow-md hover:shadow-gold-glow"
                     aria-label="Instagram"
                   >
                     <svg className="w-5 h-5 text-gray-300 group-hover:text-gold-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -277,4 +277,5 @@ export default function Footer() {
     </footer>
   );
 }
+
 

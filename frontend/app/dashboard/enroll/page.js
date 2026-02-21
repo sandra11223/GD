@@ -76,7 +76,7 @@ function EnrollContent() {
             <p className="text-gray-300 text-lg">Fill out the form below to enroll in a course</p>
           </div>
           
-          <div className="glass-dark border border-gold-400/20 rounded-xl shadow-emerald-glow p-8">
+          <div className="glass-dark border border-gold-400/20 rounded-xl shadow-gold-glow p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-sm font-semibold text-white mb-2">
@@ -87,7 +87,7 @@ function EnrollContent() {
                   value={formData.course}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-900/70 border-2 border-gold-400/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:ring-4 focus:ring-emerald-500/30 transition-all"
+                  className="w-full px-4 py-3 bg-gray-900/70 border-2 border-gold-400/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:ring-4 focus:ring-gold-500/30 transition-all"
                 >
                   <option value="">Choose a course</option>
                   {courses.map((course) => (
@@ -182,7 +182,7 @@ function EnrollContent() {
                   onChange={handleChange}
                   required
                   placeholder="Enter your full name"
-                  className="w-full px-4 py-3 bg-gray-900/70 border-2 border-gold-400/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:ring-4 focus:ring-emerald-500/30 transition-all"
+                  className="w-full px-4 py-3 bg-gray-900/70 border-2 border-gold-400/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:ring-4 focus:ring-gold-500/30 transition-all"
                 />
               </div>
 
@@ -197,7 +197,7 @@ function EnrollContent() {
                   onChange={handleChange}
                   required
                   placeholder="your.email@example.com"
-                  className="w-full px-4 py-3 bg-gray-900/70 border-2 border-gold-400/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:ring-4 focus:ring-emerald-500/30 transition-all"
+                  className="w-full px-4 py-3 bg-gray-900/70 border-2 border-gold-400/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:ring-4 focus:ring-gold-500/30 transition-all"
                 />
               </div>
 
@@ -212,7 +212,7 @@ function EnrollContent() {
                   onChange={handleChange}
                   required
                   placeholder="+1 (555) 000-0000"
-                  className="w-full px-4 py-3 bg-gray-900/70 border-2 border-gold-400/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:ring-4 focus:ring-emerald-500/30 transition-all"
+                  className="w-full px-4 py-3 bg-gray-900/70 border-2 border-gold-400/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:ring-4 focus:ring-gold-500/30 transition-all"
                 />
               </div>
 
@@ -226,7 +226,7 @@ function EnrollContent() {
                   onChange={handleChange}
                   required
                   rows="4"
-                  className="w-full px-4 py-3 bg-gray-900/70 border-2 border-gold-400/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:ring-4 focus:ring-emerald-500/30 transition-all resize-none"
+                  className="w-full px-4 py-3 bg-gray-900/70 border-2 border-gold-400/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:ring-4 focus:ring-gold-500/30 transition-all resize-none"
                   placeholder="Describe your educational background, degrees, certifications, etc."
                 ></textarea>
               </div>
@@ -267,4 +267,5 @@ export default function Enroll() {
     </ProtectedRoute>
   );
 }
+
 

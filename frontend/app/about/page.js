@@ -72,7 +72,7 @@ export default function About() {
             
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 justify-center animate-smoothSlideFade" style={{animationDelay: '0.6s'}}>
-              <Link href="/partnerships" className="btn-magnetic group relative px-8 py-4 bg-gold-400 text-black font-bold rounded-xl overflow-hidden transition-all hover:shadow-2xl hover:shadow-emerald-500/50">
+              <Link href="/partnerships" className="btn-magnetic group relative px-8 py-4 bg-gold-400 text-black font-bold rounded-xl overflow-hidden transition-all hover:shadow-2xl hover:shadow-gold-500/50">
                 <span className="relative z-10 flex items-center gap-2">
                   Partner With Us
                   <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -193,4 +193,5 @@ export default function About() {
     </div>
   );
 }
+
 

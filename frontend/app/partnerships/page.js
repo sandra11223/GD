@@ -56,7 +56,7 @@ export default function Partnerships() {
             <h1 className="text-6xl md:text-7xl font-bold mb-6 animate-fadeInUp leading-tight">
               <span className="text-white">Partnership</span>
               <br />
-              <span className="gradient-text-emerald">Opportunities</span>
+              <span className="gradient-text-gold">Opportunities</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl animate-fadeInUp animation-delay-200 leading-relaxed">
@@ -154,4 +154,6 @@ export default function Partnerships() {
     </div>
   );
 }
+
+
 

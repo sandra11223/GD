@@ -52,7 +52,7 @@ export default function Sitemap() {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 gradient-text-emerald">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 gradient-text-gold">
               Sitemap
             </h1>
             <p className="text-gray-400 text-lg">
@@ -135,4 +135,6 @@ export default function Sitemap() {
     </div>
   );
 }
+
+
 
