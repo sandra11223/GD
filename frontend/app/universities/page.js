@@ -9,7 +9,7 @@ const demoUniversities = [];
 
 export default function Universities() {
   const [universities, setUniversities] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchUniversities();
