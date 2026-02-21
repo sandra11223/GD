@@ -161,22 +161,22 @@ export default function Home() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {[
                 { 
-                  icon: '??', 
+                  icon: '🌍', 
                   title: 'Global Education',
                   desc: 'Connect with 500+ universities across 50+ countries',
                 },
                 { 
-                  icon: '??', 
+                  icon: '🎓', 
                   title: 'Skill Development',
                   desc: 'Industry-recognized certification programs',
                 },
                 { 
-                  icon: '??', 
+                  icon: '📚', 
                   title: 'Course Assistance',
                   desc: 'End-to-end application assistance',
                 },
                 { 
-                  icon: '??', 
+                  icon: '✈️', 
                   title: 'Immigration Support',
                   desc: 'Expert immigration guidance',
                 }
