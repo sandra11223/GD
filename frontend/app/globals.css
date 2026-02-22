@@ -49,6 +49,10 @@ select,
   user-select: none !important;
   outline: 0 !important;
   outline: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 /* All focus states */
@@ -69,6 +73,10 @@ select:active {
   box-shadow: none !important;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 /* Allow text selection in inputs */
@@ -1096,6 +1104,8 @@ textarea {
     box-shadow: 
       0 10px 30px rgba(245, 229, 184, 0.3),
       0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
   .btn-primary::before {
@@ -1112,6 +1122,22 @@ textarea {
     box-shadow: 
       0 15px 40px rgba(245, 229, 184, 0.5),
       0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .btn-primary:active,
+  .btn-primary:focus,
+  .btn-primary:focus-visible {
+    outline: 0 !important;
+    outline: none !important;
+    box-shadow: 
+      0 10px 30px rgba(245, 229, 184, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
   }
 
   .btn-primary:hover::before {
@@ -1121,13 +1147,28 @@ textarea {
   .btn-secondary {
     @apply px-10 py-4 font-semibold text-gold-100 rounded-2xl border-2 border-gold-400/40;
     background: rgba(31, 41, 55, 0.8);
-    backdrop-filter: blur(12px);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     transition: all 0.3s ease;
   }
   
   .btn-secondary:hover {
     @apply bg-gold-400/10 border-gold-400/60;
     transform: translateY(-2px);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .btn-secondary:active,
+  .btn-secondary:focus,
+  .btn-secondary:focus-visible {
+    outline: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
   }
 
   /* Animated Badge */
