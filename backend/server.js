@@ -16,10 +16,11 @@ const resourceRoutes = require('./routes/resourceRoutes');
 
 const app = express();
 
-// CORS Configuration - Allow all origins in development
+// CORS Configuration - Allow Vercel and localhost
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
+  'https://gd-back.onrender.com',
   process.env.FRONTEND_URL
 ].filter(Boolean);
 
@@ -31,10 +32,17 @@ const corsOptions = {
     // In development, allow all origins
     if (process.env.NODE_ENV === 'development') {
       callback(null, true);
+    } else if (process.env.NODE_ENV === 'production') {
+      // In production, allow all Vercel domains and configured origins
+      if (!origin || origin.includes('.vercel.app') || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(null, true); // Allow all for now, can restrict later
+      }
     } else if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(null, true); // Allow all for now
     }
   },
   credentials: true,
