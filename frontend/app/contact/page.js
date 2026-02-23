@@ -47,10 +47,6 @@ export default function Contact() {
           backgroundSize: '80px 80px'
         }}></div>
 
-        {/* Floating Orbs */}
-        <div className="absolute top-20 left-10 w-48 h-48 md:w-72 md:h-72 bg-gold-400/20 rounded-full blur-3xl animate-pulse z-10"></div>
-        <div className="absolute bottom-20 right-10 w-64 h-64 md:w-96 md:h-96 bg-gold-400/10 rounded-full blur-3xl animate-pulse z-10" style={{animationDelay: '1s'}}></div>
-        
         <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-20">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-gold-500/20 to-gold-400/10 border border-gold-400/40 rounded-full mb-4 sm:mb-6 backdrop-blur-sm animate-blurToFocus">

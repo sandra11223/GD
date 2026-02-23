@@ -22,11 +22,6 @@ export default function About() {
           backgroundSize: '80px 80px',
           animation: 'gridMove 25s linear infinite'
         }}></div>
-
-        {/* Floating Orbs */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gold-400/10 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gold-400/10 rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
-
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             {/* Badge */}

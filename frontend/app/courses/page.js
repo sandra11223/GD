@@ -142,10 +142,6 @@ export default function Courses() {
           backgroundSize: '80px 80px'
         }}></div>
 
-        {/* Floating Orbs */}
-        <div className="absolute top-20 left-10 w-48 h-48 md:w-72 md:h-72 bg-gold-400/20 rounded-full blur-3xl animate-pulse z-10"></div>
-        <div className="absolute bottom-20 right-10 w-64 h-64 md:w-96 md:h-96 bg-gold-400/10 rounded-full blur-3xl animate-pulse z-10" style={{animationDelay: '1s'}}></div>
-        
         <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-20">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left: Content (7 columns) */}
