@@ -9,18 +9,25 @@ export async function POST(request) {
     await dbConnect();
     const { email, password } = await request.json();
 
+    console.log('Login attempt for email:', email);
+
     const user = await User.findOne({ email });
     if (!user) {
+      console.log('User not found:', email);
       return NextResponse.json(
-        { message: 'Invalid credentials' },
+        { message: 'Invalid credentials - user not found' },
         { status: 401 }
       );
     }
 
+    console.log('User found:', user.email, 'Role:', user.role);
+
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log('Password match:', isMatch);
+    
     if (!isMatch) {
       return NextResponse.json(
-        { message: 'Invalid credentials' },
+        { message: 'Invalid credentials - password mismatch' },
         { status: 401 }
       );
     }
