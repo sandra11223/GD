@@ -133,7 +133,7 @@ function DashboardContent() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-4xl font-bold mb-2">
-                <span className="bg-gradient-to-r from-gold-400 to-green-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-brown-400 to-gold-400 bg-clip-text text-transparent">
                   Welcome back, {user?.name}
                 </span>
               </h1>
@@ -320,7 +320,7 @@ function DashboardContent() {
               <Link href="/dashboard/inquiry" className="block">
                 <div className="info-card group cursor-pointer">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-gold-400 to-green-400 flex items-center justify-center text-black">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brown-400 to-gold-400 flex items-center justify-center text-black">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                       </svg>
