@@ -1,163 +1,177 @@
-# Global Education Council Web App
+# Global Education Council - Full Stack Next.js App
 
-A full-stack MERN B2B platform for showcasing overseas education services including education consulting, skill development courses, university applications, and admission support.
+A modern serverless full-stack web application built with Next.js 14, featuring API routes, MongoDB integration, and authentication.
 
-## Tech Stack
+## 🚀 Tech Stack
 
-- **Frontend**: Next.js (React) with Server-Side Rendering (SSR)
-- **Backend**: Node.js + Express.js
-- **Database**: MongoDB (Mongoose ODM)
-- **Authentication**: JWT-based
-- **Password Hashing**: bcrypt
-- **State Management**: Context API
-- **Styling**: Tailwind CSS
-- **API Communication**: Axios
+- **Frontend**: Next.js 14, React 18, Tailwind CSS
+- **Backend**: Next.js API Routes (Serverless)
+- **Database**: MongoDB with Mongoose
+- **Authentication**: JWT with bcryptjs
+- **Deployment**: Vercel
 
-## Project Structure
+## 📁 Project Structure
 
 ```
-global-education-council/
-├── backend/
-│   ├── config/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   ├── server.js
-│   └── .env
-├── frontend/
-│   ├── app/
-│   ├── components/
-│   ├── context/
-│   ├── services/
-│   └── .env.local
-└── README.md
+frontend/
+├── app/
+│   ├── api/              # API routes (serverless backend)
+│   │   ├── auth/         # Authentication endpoints
+│   │   ├── courses/      # Course management
+│   │   ├── universities/ # University listings
+│   │   ├── enrollments/  # Student enrollments
+│   │   ├── inquiries/    # Contact inquiries
+│   │   ├── newsletter/   # Newsletter subscriptions
+│   │   ├── partnerships/ # Partnership requests
+│   │   └── services/     # Service offerings
+│   ├── admin/            # Admin dashboard
+│   ├── dashboard/        # User dashboard
+│   └── ...               # Public pages
+├── components/           # React components
+├── lib/
+│   ├── config/          # Database configuration
+│   ├── models/          # Mongoose models
+│   ├── middleware/      # Auth middleware
+│   └── seed.js          # Database seeding
+└── services/            # API client services
 ```
 
-## Setup Instructions
+## 🎯 Features
 
-### Backend Setup
+- 🎓 Course management system
+- 🏫 University listings
+- 👥 User authentication & authorization
+- 📧 Newsletter subscription
+- 🤝 Partnership applications
+- 📊 Admin dashboard
+- 📱 Responsive design
+- 🔒 Secure API routes
+- ⚡ Serverless architecture
 
-1. Navigate to backend directory:
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- MongoDB Atlas account
+
+### Installation
+
+1. Clone the repository:
 ```bash
-cd backend
+git clone https://github.com/sandra11223/GD-council.git
+cd GD-council
+```
+
+2. Navigate to frontend directory:
+```bash
+cd frontend
+```
+
+3. Install dependencies:
+```bash
 npm install
 ```
 
-2. Create `.env` file with:
-```
+4. Create `.env.local` file:
+```env
 MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
-PORT=5000
+JWT_SECRET=your_secret_key
 NODE_ENV=development
 ```
 
-3. Start backend server:
+5. Run the development server:
 ```bash
 npm run dev
 ```
 
-### Frontend Setup
+6. Open [http://localhost:3000](http://localhost:3000)
 
-1. Navigate to frontend directory:
+### Seed Database (Optional)
+
 ```bash
-cd frontend
-npm install
+npm run seed
 ```
 
-2. Create `.env.local` file with:
-```
-NEXT_PUBLIC_API_URL=http://localhost:5000/api
-```
+This creates:
+- Admin user (admin@globaledu.com / admin123)
+- Sample universities
+- Sample courses
+- Sample services
 
-3. Start frontend:
-```bash
-npm run dev
-```
+## 📡 API Routes
 
-## Features
+All API endpoints are available at `/api/*`:
 
-### Public Features (No Login Required)
-- Home page
-- About Global Education Council
-- Services listing
-- Courses listing
-- Universities listing
-- Contact page
-- SEO optimized with Next.js SSR
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/login` - User login
+- `GET /api/courses` - Get all courses
+- `POST /api/courses` - Create course
+- `GET /api/courses/[id]` - Get course by ID
+- `PUT /api/courses/[id]` - Update course
+- `DELETE /api/courses/[id]` - Delete course
+- `GET /api/universities` - Get all universities
+- `POST /api/universities` - Create university
+- `POST /api/newsletter` - Subscribe to newsletter
+- `GET /api/enrollments` - Get enrollments
+- `POST /api/enrollments` - Create enrollment
+- `POST /api/inquiries` - Submit inquiry
+- `POST /api/partnerships` - Submit partnership request
+- `GET /api/services` - Get all services
+- `POST /api/services` - Create service
 
-### Protected Features (Login Required)
-- Submit Inquiry Form
-- Course Enrollment Form
-- Partnership Application Form
-- User Dashboard
-- View submitted forms
-- Update profile
+## 🚀 Deployment
 
-### Admin Features
-- Admin Dashboard
-- Manage Courses (CRUD)
-- Manage Universities (CRUD)
-- Manage Services (CRUD)
-- View all users
-- View all inquiries
-- Approve partnership applications
-- Basic analytics
+### Vercel (Recommended)
 
-## Deployment
-
-### Backend (Render/Railway)
 1. Push code to GitHub
-2. Connect repository to hosting service
-3. Set environment variables
-4. Deploy
+2. Import project in Vercel
+3. Set root directory to `frontend`
+4. Add environment variables:
+   - `MONGODB_URI`
+   - `JWT_SECRET`
+   - `NODE_ENV=production`
+5. Deploy
 
-### Frontend (Vercel)
-1. Push code to GitHub
-2. Import project to Vercel
-3. Set environment variables
-4. Deploy
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.
 
-## API Endpoints
+## 📚 Documentation
 
-### Authentication
-- POST `/api/auth/register` - Register new user
-- POST `/api/auth/login` - Login user
+- [DEPLOYMENT.md](DEPLOYMENT.md) - Deployment guide
+- [MIGRATION_SUMMARY.md](MIGRATION_SUMMARY.md) - Migration details
+- [frontend/QUICKSTART.md](frontend/QUICKSTART.md) - Quick start guide
+- [MONGODB_SETUP_GUIDE.md](MONGODB_SETUP_GUIDE.md) - MongoDB setup
 
-### Services
-- GET `/api/services` - Get all services
-- POST `/api/services` - Create service (Admin)
-- PUT `/api/services/:id` - Update service (Admin)
-- DELETE `/api/services/:id` - Delete service (Admin)
+## 🔧 Available Scripts
 
-### Courses
-- GET `/api/courses` - Get all courses
-- POST `/api/courses` - Create course (Admin)
-- PUT `/api/courses/:id` - Update course (Admin)
-- DELETE `/api/courses/:id` - Delete course (Admin)
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run seed` - Seed database
+- `npm run lint` - Run linter
 
-### Universities
-- GET `/api/universities` - Get all universities
-- POST `/api/universities` - Create university (Admin)
-- PUT `/api/universities/:id` - Update university (Admin)
-- DELETE `/api/universities/:id` - Delete university (Admin)
+## 🌟 Architecture Highlights
 
-### Inquiries
-- POST `/api/inquiries` - Submit inquiry (Protected)
-- GET `/api/inquiries` - Get user inquiries (Protected)
-- GET `/api/inquiries/all` - Get all inquiries (Admin)
+### Serverless Benefits
+- ✅ Single deployment (no separate backend)
+- ✅ Automatic scaling
+- ✅ Lower costs (pay per use)
+- ✅ Simpler maintenance
+- ✅ Built-in API routes
+- ✅ Edge network distribution
 
-### Enrollments
-- POST `/api/enrollments` - Submit enrollment (Protected)
-- GET `/api/enrollments` - Get user enrollments (Protected)
-- GET `/api/enrollments/all` - Get all enrollments (Admin)
+### Before vs After
+**Before**: Separate Express backend + Next.js frontend
+**After**: Unified Next.js serverless application
 
-### Partnerships
-- POST `/api/partnerships` - Submit partnership application (Protected)
-- GET `/api/partnerships` - Get user partnerships (Protected)
-- GET `/api/partnerships/all` - Get all partnerships (Admin)
-- PUT `/api/partnerships/:id/approve` - Approve partnership (Admin)
-
-## License
+## 📝 License
 
 MIT
+
+## 👥 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📧 Contact
+
+For questions or support, please open an issue on GitHub.
