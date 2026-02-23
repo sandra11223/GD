@@ -1,81 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import api from '../services/api';
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
-
-  const handleSubscribe = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setMessage('');
-    setError('');
-
-    // Trim whitespace
-    const trimmedEmail = email.trim();
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!trimmedEmail) {
-      setError('Please enter your email address.');
-      setLoading(false);
-      setTimeout(() => setError(''), 5000);
-      return;
-    }
-    
-    if (!emailRegex.test(trimmedEmail)) {
-      setError('Please enter a valid email address.');
-      setLoading(false);
-      setTimeout(() => setError(''), 5000);
-      return;
-    }
-
-    try {
-      console.log('Attempting to subscribe:', trimmedEmail);
-      const { data } = await api.post('/newsletter/subscribe', { email: trimmedEmail });
-      console.log('Subscription successful:', data);
-      setMessage(data.message || 'Successfully subscribed to our newsletter!');
-      setEmail('');
-      
-      // Keep success message visible longer on mobile
-      setTimeout(() => setMessage(''), 7000);
-    } catch (err) {
-      console.error('Subscription error:', err);
-      console.error('Error response:', err.response);
-      
-      let errorMessage = 'Failed to subscribe. Please try again.';
-      
-      if (err.code === 'ERR_NETWORK' || err.message === 'Network Error') {
-        errorMessage = '⚠️ Cannot connect to server. Backend is not configured.';
-        
-        // Check if we're on Vercel/production
-        if (typeof window !== 'undefined' && !window.location.hostname.includes('localhost')) {
-          errorMessage = '⚠️ Backend not configured. Please contact administrator.';
-        }
-      } else if (err.response) {
-        // Server responded with error
-        errorMessage = err.response.data?.message || errorMessage;
-      } else if (err.request) {
-        // Request made but no response
-        errorMessage = 'Unable to connect to server. Please check your internet connection.';
-      } else {
-        // Something else happened
-        errorMessage = 'An unexpected error occurred. Please try again.';
-      }
-      
-      setError(errorMessage);
-      
-      // Keep error message visible longer on mobile
-      setTimeout(() => setError(''), 7000);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <footer className="bg-black border-t border-gold-400/20 text-white relative overflow-hidden">
@@ -84,44 +11,36 @@ export default function Footer() {
       <div className="absolute top-0 left-0 w-96 h-96 bg-gold-400/5 rounded-full filter blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-gold-400/5 rounded-full filter blur-3xl"></div>
       
-      {/* Newsletter Section */}
+      {/* Connect With Us Section */}
       <div className="bg-gradient-to-r from-brown-900/20 to-gold-900/20 border-b border-gold-400/20 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left w-full md:w-auto">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 gradient-text-emerald">Join Our Global Network</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 gradient-text-emerald">Ready to Get Started?</h3>
               <p className="text-gray-300 text-base sm:text-lg">Connect with 500+ institutions worldwide & access exclusive resources</p>
             </div>
-            <form onSubmit={handleSubscribe} className="flex flex-col gap-3 w-full md:w-auto">
-              <div className="flex flex-col sm:flex-row gap-3 w-full">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  disabled={loading}
-                  autoComplete="email"
-                  inputMode="email"
-                  className="px-4 sm:px-5 py-3.5 sm:py-4 bg-gray-900/70 border-2 border-gold-400/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:ring-4 focus:ring-gold-400/30 transition-all w-full sm:w-64 md:w-80 disabled:opacity-50 backdrop-blur-sm text-base sm:text-base min-h-[50px] touch-manipulation"
-                  style={{ fontSize: '16px', WebkitAppearance: 'none' }}
-                />
-                <button 
-                  type="submit" 
-                  disabled={loading}
-                  className="px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-gold-400 to-gold-500 text-gray-900 rounded-xl font-bold hover:from-gold-500 hover:to-gold-600 active:scale-95 transition-all shadow-gold-glow hover:shadow-gold-glow-lg whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto text-base sm:text-base touch-manipulation min-h-[50px]"
-                  style={{ WebkitTapHighlightColor: 'transparent', fontSize: '16px' }}
-                >
-                  {loading ? 'Subscribing...' : 'Subscribe'}
-                </button>
-              </div>
-              {message && (
-                <p className="text-sm sm:text-sm text-gold-400 text-center md:text-left font-medium px-2">{message}</p>
-              )}
-              {error && (
-                <p className="text-sm sm:text-sm text-red-400 text-center md:text-left font-medium px-2">{error}</p>
-              )}
-            </form>
+            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+              <Link 
+                href="/contact"
+                className="px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-gold-400 to-gold-500 text-gray-900 rounded-xl font-bold hover:from-gold-500 hover:to-gold-600 active:scale-95 transition-all whitespace-nowrap w-full sm:w-auto text-base sm:text-base touch-manipulation min-h-[50px] text-center flex items-center justify-center gap-2"
+                style={{ WebkitTapHighlightColor: 'transparent', fontSize: '16px' }}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>Connect With Us</span>
+              </Link>
+              <Link 
+                href="/contact"
+                className="px-6 sm:px-8 py-3.5 sm:py-4 bg-gray-900/70 border-2 border-gold-400/30 text-white rounded-xl font-bold hover:border-gold-400 hover:bg-gold-400/10 active:scale-95 transition-all whitespace-nowrap w-full sm:w-auto text-base sm:text-base touch-manipulation min-h-[50px] text-center flex items-center justify-center gap-2"
+                style={{ WebkitTapHighlightColor: 'transparent', fontSize: '16px' }}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Send Enquiry</span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
