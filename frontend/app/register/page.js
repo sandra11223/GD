@@ -49,11 +49,14 @@ export default function Register() {
       let errorMessage = 'Registration failed. Please try again.';
       
       if (error.code === 'ERR_NETWORK' || error.message === 'Network Error') {
-        errorMessage = '⚠️ Cannot connect to server. The backend is not configured. Please contact the administrator.';
+        // Check if API URL is configured
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        console.log('API URL configured:', apiUrl);
         
-        // Check if we're on Vercel/production
-        if (typeof window !== 'undefined' && !window.location.hostname.includes('localhost')) {
-          errorMessage = '⚠️ Backend server is not configured. Please set NEXT_PUBLIC_API_URL environment variable in Vercel. See URGENT_FIX_VERCEL.md for instructions.';
+        if (!apiUrl || apiUrl.includes('localhost')) {
+          errorMessage = '⚠️ Backend server is not configured. Please set NEXT_PUBLIC_API_URL environment variable in Vercel to: https://gd-back.onrender.com/api';
+        } else {
+          errorMessage = `⚠️ Cannot connect to backend server at ${apiUrl}. Please check if the backend is running on Render.`;
         }
       } else if (error.code === 'ECONNABORTED') {
         errorMessage = 'Request timeout. The server is taking too long to respond.';
