@@ -264,7 +264,7 @@ export default function Courses() {
                     </p>
 
                     {/* Price & CTA */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gold-400/20 mt-auto">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-4 border-t border-gold-400/20 mt-auto">
                       <div>
                         <div className="puzzle-stat-number text-2xl">
                           ₹{(course.price * 83).toLocaleString('en-IN')}
@@ -273,7 +273,7 @@ export default function Courses() {
                       </div>
                       <Link 
                         href={`/dashboard/enroll?courseId=${course._id}`}
-                        className="puzzle-btn-primary px-4 py-2 text-sm whitespace-nowrap"
+                        className="puzzle-btn-primary px-6 py-2.5 text-sm whitespace-nowrap w-full sm:w-auto text-center"
                       >
                         <span>Enroll Now</span>
                       </Link>
